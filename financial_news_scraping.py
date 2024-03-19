@@ -30,9 +30,8 @@ chrome_options.headless = False
 chrome_options.add_argument('--incognito')
 chrome_options.add_argument("--window-size=1920,1200")
 
-## Set the browser
+## Set the browser - insert the directory for chromedriver.exe in your computer
 path = r'C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe'
-#path = r'C:\Users\u109898\Documents\chromedriver_win32\chromedriver.exe'
 browser = webdriver.Chrome(options = chrome_options, executable_path = path)
 
 #%% Query settings
@@ -47,7 +46,6 @@ browser.find_elements_by_class_name('jyfHyd')[1].click()
 
 
 #%%
-#news_df = pd.read_csv('news.csv', sep='/t')
 news_df = pd.read_excel('news.xlsx')
 company_df = pd.read_excel('company.xlsx', sheet_name = 'Sheet1')
 
@@ -56,9 +54,6 @@ end_date = datetime.date.today().strftime("%Y-%m-%d")
 end_date = datetime.datetime.strptime(end_date, "%Y-%m-%d").date()
 delta = (end_date - start_date).days
 
-#page = 0 
-#d = 1235
-#query = "google inc"
 
 try:
     for index,row in company_df.iterrows():
@@ -130,50 +125,5 @@ except Exception as e:
     df=pd.DataFrame(dict)
     news_df = news_df.append(df)
     news_df.to_excel("news.xlsx", index=False)
-        
-            
-                
-
-            
-            
-            
-            
     
-#%%
-#dict = {'title': titlelist, 'text': textlist, 'source': sourcelist, 'date': datelist, 'company': queries}
-#df=pd.DataFrame(dict)
-#news_df = news_df.append(df)
-#news_df.to_csv("news3.csv", index=False)
-
-#news_df=pd.DataFrame(dict)
-#dict = {'title': titlelist, 'text': textlist, 'source': sourcelist, 'date': datelist, 'company': queries}
-#df=pd.DataFrame(dict)
-#news_df = news_df.append(df)
-#news_df.to_excel("news.xlsx", index=False)
-
-
-
-#csv de 3 satır olduğu içn excele yazıyorum 
-#titles ı da değiştirdim 
-#error verince code çalışması denenmedi 
-#take the unique news at the end. since there will be repitations coming from the interrupted scraping 
-
-
-
-#company listesi kontrol et 
-
-# To be done:
-#     1. Turn to next page: maybe looking for something related to "next"...
-#     2. Loop over all pages, and generate a random break among loops
-#     3. Loop over all products of interest
-    
-#     6. translate issues
-#     7. titles text source ve text aynı olmadığında warning ver
-# """
-
-
-
-
-
-
-# %%
+   
